@@ -29,7 +29,7 @@ node_modules
 
 lib/
 data/
-keys/
-modules/
-!keys/.gitkeep
-!modules/.gitkeep
+/keys/*
+/modules/*
+!/modules/.gitkeep
+!/keys/.gitkeep
