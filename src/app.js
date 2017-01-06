@@ -13,8 +13,20 @@ const bodyParser = require('body-parser');
 const socketio = require('feathers-socketio');
 const middleware = require('./middleware');
 const services = require('./services');
+//REMOVE FROM PRODUCTION
+const webpack = require('webpack');
+const config = require('../webpack.config.js');
+//BLOCK END
 
 const app = feathers();
+
+//REMOVE FROM PRODUCTION
+var compiler = webpack(config);
+app.use(require('webpack-dev-middleware')(compiler, {
+  publicPath: config.output.publicPath
+}));
+app.use(require('webpack-hot-middleware')(compiler));
+//BLOCK END
 
 app.configure(configuration(path.join(__dirname, '..')));
 
