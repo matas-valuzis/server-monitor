@@ -9,14 +9,33 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const serverSchema = new Schema({
-  server_name: { type: String, required: true },
-  address: { type: String, required: true },
-  user: { type: String, required: true },
-  private_key: { type: String, required: true },
-  sudo: { type: Boolean, required: true },
-  modules: {type: Array, requred: true, default: []},
-  createdAt: { type: Date, 'default': Date.now },
-  updatedAt: { type: Date, 'default': Date.now }
+    server_name: {
+        type: String,
+        required: true
+    },
+    address: {
+        type: String,
+        required: true
+    },
+    user: {
+        type: String,
+        required: true
+    },
+    private_key: {
+        type: String,
+        required: true
+    },
+    sudo: {
+        type: Boolean,
+        required: true
+    },
+    modules: [{
+        type: String,
+        enum: ['disk', 'ram']
+    }],
+
+    createdAt: { type: Date, 'default': Date.now },
+    updatedAt: { type: Date, 'default': Date.now }
 });
 
 const serverModel = mongoose.model('server', serverSchema);

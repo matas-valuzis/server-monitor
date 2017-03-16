@@ -1,4 +1,5 @@
 'use strict';
+let fs = require('fs');
 
 const hooks = require('./hooks');
 
@@ -8,7 +9,14 @@ class Service {
   }
 
   find(params) {
-    return Promise.resolve(['main_rsa']);
+    return new Promise(function(resolve, revoke){
+        fs.readdir('keys', (err, keys) => {
+          if(err){
+            revoke(err);
+          }
+          resolve(keys.filter(k => k != '.gitkeep'));
+        });
+    });
   }
 
 }

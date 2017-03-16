@@ -6,10 +6,11 @@ module.exports = [
     dependencies: ['servers'],
     resolver: function (action, dispatch){
         this.servers.find().then(d => {
+            let all_server = d.data.map(s => Object.assign({id: s._id}, s));
             dispatch(new ReducedAction(
               action.type,
               'servers.all_servers',
-              d.data
+              all_server
             ));
         });
     }
@@ -23,7 +24,7 @@ module.exports = [
             dispatch(new ReducedAction(
               action.type,
               'servers.all_servers',
-              all => [...all, Object.assign({}, s)]
+              all => [...all, Object.assign({id: s._id}, s)]
             ))
         })
         .catch(e => {
@@ -35,12 +36,16 @@ module.exports = [
     name: 'FETCH_KEYS',
     dependencies: ['keys'],
     resolver: function (action, dispatch){
-        this.keys.find().then(d => {
+        this.keys.find()
+        .then(d => {
             dispatch(new ReducedAction(
               action.type,
               'servers.key_files',
               d
             ));
+        })
+        .catch(e => {
+          console.log(e);
         });
     }
   },

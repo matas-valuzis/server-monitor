@@ -13,9 +13,13 @@ const mapStateToProps = (state) => {
       sideBarContent = '';
       mainContent = <LoginContainer />;
     }
+    else if (state.page == 'new' || state.servers.current_server == null){
+        sideBarContent = <ServerMenuContainer />;
+        mainContent = <CreateServerFormContainer />;
+    }
     else{
       sideBarContent = <ServerMenuContainer />;
-      mainContent = <CreateServerFormContainer />;
+      mainContent = <ServerContentContainer />;
     }
 
     return {

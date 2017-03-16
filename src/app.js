@@ -1,5 +1,5 @@
 'use strict';
-
+const fs = require('fs');
 const path = require('path');
 const serveStatic = require('feathers').static;
 const favicon = require('serve-favicon');
@@ -13,6 +13,7 @@ const bodyParser = require('body-parser');
 const socketio = require('feathers-socketio');
 const middleware = require('./middleware');
 const services = require('./services');
+const express = require('express');
 //REMOVE FROM PRODUCTION
 const webpack = require('webpack');
 const config = require('../webpack.config.js');
@@ -34,13 +35,15 @@ app.use(compress())
   .options('*', cors())
   .use(cors())
   .use(favicon( path.join(app.get('public'), 'favicon.ico') ))
-  .use('/', serveStatic( app.get('public') ))
-  .use(bodyParser.json())
-  .use(bodyParser.urlencoded({ extended: true }))
-  .configure(hooks())
-  .configure(rest())
-  .configure(socketio())
-  .configure(services)
-  .configure(middleware);
+  .use('/', serveStatic( app.get('public') ));
+
+
+app.use(bodyParser.json())
+.use(bodyParser.urlencoded({ extended: true }))
+.configure(hooks())
+.configure(rest())
+.configure(socketio())
+.configure(services)
+.configure(middleware);
 
 module.exports = app;
