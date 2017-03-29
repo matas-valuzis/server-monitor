@@ -17,13 +17,13 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onServerSelect: server => {
         dispatch(new ReducedAction('SELECT_SERVER', 'servers.current_server', server.id));
-        dispatch(new ReducedAction('SELECT_SERVER', 'page', 'servers'));
+        dispatch(new ReducedAction('CHANGE_PAGE', 'page', 'servers'));
     },
     onMenuLoad: () => {
        dispatch(UA('FETCH_SERVERS'));
     },
     onNewSelect: () => {
-        dispatch( new ReducedAction('SELECT_NEW', 'page', 'new'));
+        dispatch( new ReducedAction('CHANGE_PAGE', 'page', 'new'));
         dispatch(new ReducedAction('SELECT_SERVER', 'servers.current_server', null));
     }
   }

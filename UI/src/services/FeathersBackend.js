@@ -1,4 +1,4 @@
-const feathers = require('feathers/client')
+const feathers = require('feathers/client');
 const socketio = require('feathers-socketio/client');
 const hooks = require('feathers-hooks');
 const io = require('socket.io-client');
@@ -28,7 +28,7 @@ export default class FeathersBackend {
     };
 
     get(serviceName){
-        return this.app.service(serviceName);
+        return this.app.service('/api/' + serviceName);
     }
 
 }

@@ -20,9 +20,11 @@ const config = require('../webpack.config.js');
 //BLOCK END
 
 const app = feathers();
+const api = feathers();
 
 //REMOVE FROM PRODUCTION
-var compiler = webpack(config);
+
+let compiler = webpack(config);
 app.use(require('webpack-dev-middleware')(compiler, {
   publicPath: config.output.publicPath
 }));
@@ -31,19 +33,24 @@ app.use(require('webpack-hot-middleware')(compiler));
 
 app.configure(configuration(path.join(__dirname, '..')));
 
+
 app.use(compress())
-  .options('*', cors())
-  .use(cors())
-  .use(favicon( path.join(app.get('public'), 'favicon.ico') ))
-  .use('/', serveStatic( app.get('public') ));
+    .options('*', cors())
+    .use(cors())
+    .use(favicon( path.join(app.get('public'), 'favicon.ico') ))
+    .use('/', serveStatic( app.get('public') ));
 
+// api config
+api.configure(configuration(path.join(__dirname, '..')));
 
-app.use(bodyParser.json())
+api.use(bodyParser.json())
 .use(bodyParser.urlencoded({ extended: true }))
 .configure(hooks())
 .configure(rest())
 .configure(socketio())
 .configure(services)
 .configure(middleware);
+
+app.use('/api', api);
 
 module.exports = app;

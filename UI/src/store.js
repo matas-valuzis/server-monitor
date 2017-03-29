@@ -4,7 +4,7 @@ import { reducedActionMiddleware, createReducedActionReducer } from 'reduced-act
 import ResolverManager, { createUnresolvedActionMiddleware } from './services/UnresolvedAction';
 import FeathersBackend from './services/FeathersBackend';
 import reducer from './reducer.js';
-import resolvers from './services/resolvers/MainResolver';
+import resolvers from './services/resolvers';
 
 const fb = new FeathersBackend();
 fb.connect();

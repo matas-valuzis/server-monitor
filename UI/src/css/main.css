@@ -18,3 +18,15 @@
 .login-error{
   color: red;
 }
+
+.error{
+  color: red;
+}
+
+.offline{
+    color: red;
+}
+
+.online{
+    color: green;
+}

@@ -21,7 +21,22 @@ exports.before = {
 exports.after = {
   all: [],
   find: [],
-  get: [],
+  get: [
+      (hook, next) => {
+        let options = hook.params.query;
+        if (options.checkifconnected){
+            let server = hook.result.toObject();
+            hook.app.service('/connected')
+                .get(server)
+                .then((res) => {
+                  hook.result = res;
+                  next();
+              })
+
+        }
+      }
+
+  ],
   create: [],
   update: [],
   patch: [],
