@@ -3,7 +3,7 @@ import ReducedAction from 'reduced-actions-redux';
 module.exports = [
     {
         name: 'AUTHENTICATE',
-        dependencies: ['login'],
+        dependencies: ['login', 'changePathAction'],
         resolver: function (action, dispatch){
             this.login(action.context.email, action.context.pass)
                 .then(() => {
@@ -14,10 +14,11 @@ module.exports = [
                             email: action.context.email,
                             password: '',
                             authenticated: true,
-                            error: false
+                            error: ''
                         }
                     ));
                 })
+                .then(() => dispatch(this.changePathAction('/dashboard')))
                 .catch((e) => {
                     console.log(e);
                     dispatch(new ReducedAction(

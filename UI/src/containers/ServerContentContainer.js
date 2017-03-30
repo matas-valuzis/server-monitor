@@ -4,8 +4,8 @@ import { extractValue } from 'reduced-actions-redux'
 import ServersContent from '../domainComponents/mainContent/ServersContent.jsx'
 import {createUnresolvedAction as UA} from '../services/UnresolvedAction';
 
-const mapStateToProps = (state) => {
-    let selected = state.servers.current_server;
+const mapStateToProps = (state, ownProps) => {
+    let selected = ownProps.serverId;
     let server = extractValue(state, `servers.all_servers[${selected}]`);
     return {
         server: server,

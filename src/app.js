@@ -26,7 +26,8 @@ const api = feathers();
 
 let compiler = webpack(config);
 app.use(require('webpack-dev-middleware')(compiler, {
-  publicPath: config.output.publicPath
+  publicPath: config.output.publicPath,
+  historyApiFallback: true
 }));
 app.use(require('webpack-hot-middleware')(compiler));
 //BLOCK END
@@ -38,6 +39,12 @@ app.use(compress())
     .options('*', cors())
     .use(cors())
     .use(favicon( path.join(app.get('public'), 'favicon.ico') ))
+    .get('/login*', (req, res) => {
+        res.sendFile(path.resolve(app.get('public'), 'index.html'));
+    })
+    .get('/dashboard*', (req, res) => {
+        res.sendFile(path.resolve(app.get('public'), 'index.html'));
+    })
     .use('/', serveStatic( app.get('public') ));
 
 // api config

@@ -1,4 +1,6 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, combineReducers} from 'redux';
+import createHistory from 'history/createBrowserHistory'
+import { routerReducer, routerMiddleware, push, goBack} from 'react-router-redux'
 import createLogger from 'redux-logger';
 import { reducedActionMiddleware, createReducedActionReducer } from 'reduced-actions-redux';
 import ResolverManager, { createUnresolvedActionMiddleware } from './services/UnresolvedAction';
@@ -13,29 +15,37 @@ rm.registerDependcies({
     servers: fb.get('servers'),
     login: fb.login,
     keys: fb.get('keys'),
+    changePathAction: push,
+    goBackAction: goBack
 });
 rm.registerResolvers(resolvers);
 
 const resolverMiddleware = createUnresolvedActionMiddleware(rm);
+let history = createHistory();
 
 const loggerMiddleware = createLogger({
     level: 'info',
     collapsed: true,
 });
 
+const reactRouterMiddleware = routerMiddleware(history);
+
 
 let defaultStore = {
+    loader: {
+        message: '',
+        loaded_keys: false,
+        loaded_servers: false,
+    },
     authentication: {
       email: '',
       password: '',
       authenticated: false,
       error: ''
     },
-    page: "servers",
     servers: {
       key_files: [],
       all_servers:[],
-      current_server: null,
       new_server: {
         server_name: '',
         address: '',
@@ -46,7 +56,18 @@ let defaultStore = {
     },
 };
 
-module.exports = createStore(
-  createReducedActionReducer(reducer(defaultStore)),
-  applyMiddleware(reducedActionMiddleware, resolverMiddleware, loggerMiddleware)
+const rootReducer = combineReducers({
+    authentication: reducer(defaultStore.authentication),
+    routing: routerReducer,
+    servers: reducer(defaultStore.servers),
+    loader: reducer(defaultStore.loader)
+});
+
+
+let store = createStore(
+  createReducedActionReducer(rootReducer),
+  applyMiddleware(reducedActionMiddleware, resolverMiddleware, loggerMiddleware, reactRouterMiddleware)
 );
+
+module.exports.store = store;
+module.exports.history = history;

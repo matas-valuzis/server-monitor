@@ -1,7 +1,8 @@
 
 let mainReducer = (defaultStore) => {
   return (store, action) => {
-    return defaultStore;
+
+    return store || defaultStore;
   };
 };
 module.exports = mainReducer;

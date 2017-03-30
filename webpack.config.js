@@ -10,7 +10,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'public', 'static'),
     filename: 'app.js',
-    publicPath: 'http://localhost:3030/static/'
+    publicPath: '/static/'
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin()

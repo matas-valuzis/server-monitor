@@ -5,6 +5,7 @@ import {createUnresolvedAction as UA} from '../services/UnresolvedAction';
 const mapStateToProps = (state) => {
     return {
         keys: state.servers.key_files,
+        data_loaded: state.loader.loaded_keys
     };
 };
 const mapDispatchToProps = (dispatch) => {
@@ -12,8 +13,8 @@ const mapDispatchToProps = (dispatch) => {
         onSubmit: (data) => {
             dispatch(UA('ADD_SERVER', data));
         },
-        onFormLoad: () => {
-            dispatch(UA('FETCH_KEYS'));
+        onFormLoad: (load) => {
+            return load || dispatch(UA('FETCH_KEYS'));
         }
     };
 };

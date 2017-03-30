@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 export default class CreateServerForm extends Component {
 
   componentDidMount(){
-    this.props.onFormLoad();
+    this.props.onFormLoad(this.props.data_loaded);
   }
 
   onSubmit = (e) => {

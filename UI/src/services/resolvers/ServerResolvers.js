@@ -1,4 +1,5 @@
 import ReducedAction from 'reduced-actions-redux';
+import {createUnresolvedAction as UA} from '../UnresolvedAction';
 
 module.exports = [
     {
@@ -12,6 +13,8 @@ module.exports = [
                     'servers.all_servers',
                     all_server
                 ));
+            }).catch(e => {
+                dispatch(UA('ERROR', e));
             });
         }
     },
@@ -28,7 +31,7 @@ module.exports = [
                     ))
                 })
                 .catch(e => {
-                    console.log(e.message);
+                    dispatch(UA('ERROR', e));
                 });
         }
     },
@@ -51,7 +54,7 @@ module.exports = [
                     ));
                 })
                 .catch(e => {
-                    console.log(e.message);
+                    dispatch(UA('ERROR', e));
                 });
         }
     },
@@ -69,7 +72,7 @@ module.exports = [
                     ));
                 })
                 .catch(e => {
-                    console.log(e.message);
+                    dispatch(UA('ERROR', e));
                 });
         }
     },
@@ -86,9 +89,23 @@ module.exports = [
                     ));
                 })
                 .catch(e => {
-                    console.log(e);
+                    dispatch(UA('ERROR', e));
                 });
         }
-    }
-
+    },
+    {
+        name: 'SERVER_EDIT_SELECT',
+        dependencies: ['changePathAction'],
+        resolver: function (action, dispatch){
+            const server_id = action.context;
+            dispatch(this.changePathAction('/dashboard/edit/' + server_id));
+        }
+    },
+    {
+        name: 'SERVER_NEW_SELECT',
+        dependencies: ['changePathAction'],
+        resolver: function (action, dispatch){
+            dispatch(this.changePathAction('/dashboard/new'));
+        }
+    },
 ];

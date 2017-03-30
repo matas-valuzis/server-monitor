@@ -3,10 +3,10 @@ import SideBar from './SideBar.jsx';
 import MainContent from './MainContent.jsx';
 export default class MainPage extends Component {
   render() {
+    const content = this.props.content || this.props.children;
     return (
       <div className="main-page">
-        <SideBar content={ this.props.sidebarContent } />
-        <MainContent content={ this.props.mainContent } />
+          {content}
       </div>
     );
   }

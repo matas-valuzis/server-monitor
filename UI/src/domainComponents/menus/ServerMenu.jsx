@@ -3,7 +3,7 @@ import LinkList from '../../components/lists/LinkList.jsx';
 
 export default class ServerMenu extends Component {
     componentDidMount(){
-    this.props.onMenuLoad();
+    this.props.onMenuLoad(this.props.data_loaded);
     }
     render() {
         let selected = this.props.new ? 'selected' : '';
