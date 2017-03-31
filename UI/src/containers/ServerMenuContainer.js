@@ -9,8 +9,9 @@ const mapStateToProps = (state, props) => {
     return {
         data_loaded: state.loader.loaded_servers,
         servers: state.servers.all_servers,
-        current_server: props.params.serverId || null,
-        new: props.params.action == 'new'
+        current_server: props.params.action == 'edit' ? props.params.serverId : null,
+        new: props.params.action == 'new',
+        dashboard: !props.params.action
     };
 };
 
@@ -24,6 +25,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     onNewSelect: () => {
         dispatch(UA('SERVER_NEW_SELECT'));
+    },
+    onDashboardSelect: () => {
+      dispatch(UA('SERVER_DASHBOARD_SELECT'));
     }
   }
 };

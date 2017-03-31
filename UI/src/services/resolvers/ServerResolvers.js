@@ -148,10 +148,25 @@ module.exports = [
         }
     },
     {
+        name: 'SERVER_MONITORING_SELECT',
+        dependencies: ['changePathAction'],
+        resolver: function (action, dispatch){
+            const server_id = action.context;
+            dispatch(this.changePathAction('/dashboard/monitor/' + server_id));
+        }
+    },
+    {
         name: 'SERVER_NEW_SELECT',
         dependencies: ['changePathAction'],
         resolver: function (action, dispatch){
             dispatch(this.changePathAction('/dashboard/new'));
+        }
+    },
+    {
+        name: 'SERVER_DASHBOARD_SELECT',
+        dependencies: ['changePathAction'],
+        resolver: function (action, dispatch){
+            dispatch(this.changePathAction('/dashboard'));
         }
     },
 ];

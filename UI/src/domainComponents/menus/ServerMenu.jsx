@@ -7,18 +7,20 @@ export default class ServerMenu extends Component {
     }
     render() {
         let selected = this.props.new ? 'selected' : '';
+        let dashboard_selected = this.props.dashboard ? 'selected' : '';
         return (
             <div className="server-menu">
-              <h3>Servers:</h3>
+              <h3 className={[dashboard_selected].join(" ")} onClick={this.props.onDashboardSelect}>Dashboard</h3>
+              <h3>Server settings:</h3>
             <LinkList
               items={this.props.servers}
               labelResolver={(i) => i.server_name}
               selectedItem={this.props.current_server}
               onItemClick={this.props.onServerSelect}
             />
-              <h6 className={[selected].join(" ")}>
-                  <span onClick={() => this.props.onNewSelect() }>New</span>
-              </h6>
+              <h4 className={[selected].join(" ")}>
+                  <span onClick={() => this.props.onNewSelect() }>Add new server</span>
+              </h4>
 
             </div>
         );

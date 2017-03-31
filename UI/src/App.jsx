@@ -9,6 +9,8 @@ import LoginContainer from './containers/LoginContainer';
 import CreateServerFormContainer from './containers/CreateServerFormContainer';
 import ServerMenuContainer from './containers/ServerMenuContainer';
 import ServerContentContainer from './containers/ServerContentContainer';
+import ServerMonitoringContentContainer from './containers/ServerMonitoringContentContainer';
+import MainMonitoringContentContainer from './containers/MainMonitoringContentContainer';
 import MainPageLoaderContainer from './containers/MainPageLoaderContainer';
 
 import {store, history} from './store';
@@ -20,28 +22,31 @@ export default class App extends Component {
 
     return (
 
-      <Provider store={store}>
+    <Provider store={store}>
         <ConnectedRouter history={history}>
           <div>
         <Route exact={true} path="/" component={MainPageLoaderContainer} />
         <Route path="/login" component={LoginContainer} />
         <Route path="/dashboard/:action?/:serverId?" render={(m) => (
-          <MainPageContainer >
+            <MainPageContainer >
             <SideBar>
-              <ServerMenuContainer params={m.match.params || {}} />
+                <ServerMenuContainer params={m.match.params || {}} />
             </SideBar>
             <MainContent>
-              <Route path="/dashboard/new" component={CreateServerFormContainer} />
-              <Route path="/dashboard/edit/:serverId" render={(m) => {
+                <Route path="/dashboard/new" component={CreateServerFormContainer} />
+                <Route path="/dashboard/edit/:serverId" render={(m) => {
                   return (<ServerContentContainer serverId={m.match.params.serverId} />);
-              }}/>
+                }}/>
+                <Route path="/dashboard/monitor/:serverId" render={(m) => {
+                    return (<ServerMonitoringContentContainer serverId={m.match.params.serverId} />);
+                }}/>
+                <Route exact={true} path="/dashboard" component={MainMonitoringContentContainer}/>
             </MainContent>
-          </MainPageContainer>
+            </MainPageContainer>
         )} />
           </div>
         </ConnectedRouter>
-      </Provider>
-
+    </Provider>
     );
   }
 }
