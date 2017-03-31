@@ -17,8 +17,18 @@ const mapDispatchToProps = (dispatch) => {
         onDelete: (id) => {
             dispatch(UA('DELETE_SERVER', id));
         },
+        onLogDelete: (server, id) => {
+            dispatch(UA('REMOVE_SERVER_LOG', {log_id: id, server: server}));
+        },
         onCheck: (id) => {
             dispatch(UA('CHECK_SERVER_CONNECTION', id));
+        },
+        onNewLogAdd: (server, log) => {
+            dispatch(UA('ADD_SERVER_LOG', {
+                server: server,
+                name: log.name,
+                path: log.path
+            }));
         }
     };
 };

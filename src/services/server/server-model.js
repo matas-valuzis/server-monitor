@@ -29,9 +29,9 @@ const serverSchema = new Schema({
         type: Boolean,
         required: true
     },
-    modules: [{
-        type: String,
-        enum: ['disk', 'ram']
+    logs: [{
+        path: String,
+        name: String
     }],
 
     createdAt: { type: Date, 'default': Date.now },

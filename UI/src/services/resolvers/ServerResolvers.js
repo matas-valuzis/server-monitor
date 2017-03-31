@@ -36,17 +36,63 @@ module.exports = [
         }
     },
     {
-        name: 'DELETE_SERVER',
+        name: 'ADD_SERVER_LOG',
         dependencies: ['servers'],
+        resolver: function (action, dispatch){
+            const server_id =  action.context.server.id;
+            const patch = {
+                logs: [
+                    ...action.context.server.logs,
+                    {
+                        name: action.context.name,
+                        path: action.context.path,
+                    }
+                ]
+            };
+            this.servers.patch(server_id, patch)
+                .then(s => {
+                    console.log(s);
+                    dispatch(new ReducedAction(
+                        action.type,
+                        `servers.all_servers[${server_id}].logs`,
+                        s.logs
+                    ))
+                })
+                .catch(e => {
+                    dispatch(UA('ERROR', e));
+                });
+        }
+    },
+    {
+        name: 'REMOVE_SERVER_LOG',
+        dependencies: ['servers'],
+        resolver: function (action, dispatch){
+            const server_id =  action.context.server.id;
+            const patch = {
+                logs: action.context.server.logs.filter(l => l._id != action.context.log_id),
+            };
+            this.servers.patch(server_id, patch)
+                .then(s => {
+                    console.log(s);
+                    dispatch(new ReducedAction(
+                        action.type,
+                        `servers.all_servers[${server_id}].logs`,
+                        s.logs
+                    ))
+                })
+                .catch(e => {
+                    dispatch(UA('ERROR', e));
+                });
+        }
+    },
+    {
+        name: 'DELETE_SERVER',
+        dependencies: ['servers', 'changePathAction'],
         resolver: function (action, dispatch){
             let server_id = action.context;
             this.servers.remove(server_id)
                 .then(s => {
-                    dispatch(new ReducedAction(
-                        action.type,
-                        'servers.current_server',
-                        null
-                    ));
+                    dispatch(this.changePathAction('/dashboard'));
                     dispatch(new ReducedAction(
                         action.type,
                         'servers.all_servers',
