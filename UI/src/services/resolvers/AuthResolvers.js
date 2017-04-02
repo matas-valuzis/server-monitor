@@ -18,7 +18,7 @@ module.exports = [
                         }
                     ));
                 })
-                .then(() => dispatch(this.changePathAction('/dashboard')))
+                .then(() => dispatch(this.changePathAction('/')))
                 .catch((e) => {
                     console.log(e);
                     dispatch(new ReducedAction(

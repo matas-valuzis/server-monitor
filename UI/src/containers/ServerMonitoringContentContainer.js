@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ReducedAction, { extractValue } from 'reduced-actions-redux';
-import ServerMonitoringContent from '../domainComponents/mainContent/ServerMonitoringContent.jsx'
-import {createUnresolvedAction as UA} from '../services/UnresolvedAction';
+import ServerMonitoringContent from '../domainComponents/mainContent/ServerMonitoringContent.jsx';
 
-
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
+    let selected = props.serverId;
+    let server = extractValue(state, `servers.all_servers[${selected}]`);
     return {
-
+        server: server,
     };
 };
 

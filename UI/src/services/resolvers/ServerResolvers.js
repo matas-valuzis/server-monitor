@@ -51,7 +51,6 @@ module.exports = [
             };
             this.servers.patch(server_id, patch)
                 .then(s => {
-                    console.log(s);
                     dispatch(new ReducedAction(
                         action.type,
                         `servers.all_servers[${server_id}].logs`,
@@ -73,7 +72,6 @@ module.exports = [
             };
             this.servers.patch(server_id, patch)
                 .then(s => {
-                    console.log(s);
                     dispatch(new ReducedAction(
                         action.type,
                         `servers.all_servers[${server_id}].logs`,
@@ -168,5 +166,6 @@ module.exports = [
         resolver: function (action, dispatch){
             dispatch(this.changePathAction('/dashboard'));
         }
-    },
+    }
+
 ];

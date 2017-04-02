@@ -7,7 +7,7 @@ export default class ServerMonitoringContent extends Component {
     render() {
         return (
             <div className="server-module log-module">
-              <ServerLogModuleContainer />
+              <ServerLogModuleContainer serverId={this.props.server.id} />
             </div>
         );
     }

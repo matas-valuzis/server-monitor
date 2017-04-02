@@ -15,6 +15,7 @@ rm.registerDependcies({
     servers: fb.get('servers'),
     login: fb.login,
     keys: fb.get('keys'),
+    logs: fb.get('logs'),
     changePathAction: push,
     goBackAction: goBack
 });
@@ -38,21 +39,24 @@ let defaultStore = {
         loaded_servers: false,
     },
     authentication: {
-      email: '',
-      password: '',
-      authenticated: false,
-      error: ''
+        email: '',
+        password: '',
+        authenticated: false,
+        error: ''
+    },
+    monitoring_data: {
+        server_logs: []
     },
     servers: {
-      key_files: [],
-      all_servers:[],
-      new_server: {
-        server_name: '',
-        address: '',
-        user: '',
-        sudo: false,
-        private_key: null,
-      }
+        key_files: [],
+        all_servers:[],
+        new_server: {
+            server_name: '',
+            address: '',
+            user: '',
+            sudo: false,
+            private_key: null,
+        }
     },
 };
 
@@ -60,7 +64,8 @@ const rootReducer = combineReducers({
     authentication: reducer(defaultStore.authentication),
     routing: routerReducer,
     servers: reducer(defaultStore.servers),
-    loader: reducer(defaultStore.loader)
+    loader: reducer(defaultStore.loader),
+    monitoring_data: reducer(defaultStore.monitoring_data)
 });
 
 

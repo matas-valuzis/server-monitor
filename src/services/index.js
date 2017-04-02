@@ -4,6 +4,7 @@ const server = require('./server');
 const authentication = require('./authentication');
 const user = require('./user');
 const con = require('./connected');
+const logs = require('./logs');
 const mongoose = require('mongoose');
 module.exports = function() {
   const app = this;
@@ -16,4 +17,5 @@ module.exports = function() {
   app.configure(server);
   app.configure(keys);
   app.configure(con);
+  app.configure(logs);
 };

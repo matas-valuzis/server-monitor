@@ -33,3 +33,4 @@ data/
 /modules/*
 !/modules/.gitkeep
 !/keys/.gitkeep
+!/src/services/logs/
