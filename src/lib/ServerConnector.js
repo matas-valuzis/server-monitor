@@ -33,6 +33,7 @@ const path = require('path');
             conn.exec(command, function(err, stream) {
                 if (err) throw err;
                 stream.setEncoding('utf8');
+                stream.stderr.setEncoding('utf8');
                 stream.on('close', function(code, signal) {
                     console.log(`Stream closed code: ${code} signal: ${signal} command: ${command}`);
                     if (close) close(code);
