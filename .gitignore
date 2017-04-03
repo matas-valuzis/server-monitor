@@ -34,3 +34,6 @@ data/
 !/modules/.gitkeep
 !/keys/.gitkeep
 !/src/services/logs/
+!/src/lib/
+!/src/services/
+!/src/commands/

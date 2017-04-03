@@ -30,6 +30,7 @@ app.use(require('webpack-dev-middleware')(compiler, {
   historyApiFallback: true
 }));
 app.use(require('webpack-hot-middleware')(compiler));
+
 //BLOCK END
 
 app.configure(configuration(path.join(__dirname, '..')));
