@@ -29,8 +29,7 @@ const path = require('path');
     executeWithStream(command, cb, error, close){
         let conn = new Client();
         return conn.on('ready', function() {
-            console.log('Client :: ready');
-            conn.exec(command, function(err, stream) {
+            conn.exec(command,  function(err, stream) {
                 if (err) throw err;
                 stream.setEncoding('utf8');
                 stream.stderr.setEncoding('utf8');
@@ -39,7 +38,7 @@ const path = require('path');
                     if (close) close(code);
                     conn.end();
                 }).on('data', function(data) {
-                    cb(data);
+                    cb(data.replace('\r', ''));
                 }).stderr.on('data', function(data) {
                     error(data);
                 });
