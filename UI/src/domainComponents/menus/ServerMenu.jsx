@@ -3,26 +3,39 @@ import LinkList from '../../components/lists/LinkList.jsx';
 
 export default class ServerMenu extends Component {
     componentDidMount(){
-    this.props.onMenuLoad(this.props.data_loaded);
+        this.props.onMenuLoad(this.props.data_loaded);
     }
     render() {
-        let selected = this.props.new ? 'selected' : '';
-        let dashboard_selected = this.props.dashboard ? 'selected' : '';
-        return (
-            <div className="server-menu">
-              <h3 className={[dashboard_selected].join(" ")} onClick={this.props.onDashboardSelect}>Dashboard</h3>
-              <h3>Server settings:</h3>
-            <LinkList
-              items={this.props.servers}
-              labelResolver={(i) => i.server_name}
-              selectedItem={this.props.current_server}
-              onItemClick={this.props.onServerSelect}
-            />
-              <h4 className={[selected].join(" ")}>
-                  <span onClick={() => this.props.onNewSelect() }>Add new server</span>
-              </h4>
+        let add_selected = this.props.new ? ' active' : '';
+        let dashboard_selected = this.props.dashboard ? ' active' : '';
+        let serverSettingExpanded = this.props.settingsSelected ? 'collapse ' : '';
 
-            </div>
+
+
+        return (
+            <ul className="nav nav-pills nav-justified flex-column">
+                <h1>Sermon</h1>
+                <li className="nav-item">
+                    <a className={"nav-link " + [dashboard_selected].join(" ")} onClick={this.props.onDashboardSelect} >Dashboard</a>
+                </li>
+                <li className="nav-item">
+                    <a onClick={(e) => {e.preventDefault(); this.props.onSettingsSelect();}} className={"nav-link"}>
+                        Server settings:
+                    </a>
+                    <LinkList
+                        className={"nav-pills nav-justified flex-column " + serverSettingExpanded}
+                        items={this.props.servers}
+                        labelResolver={(i) => i.server_name}
+                        selectedItem={this.props.current_server}
+                        onItemClick={this.props.onServerSelect}
+                    />
+                </li>
+                <li className="nav-item">
+                    <a className={"nav-link " + [add_selected].join(" ")}>
+                        <span onClick={() => this.props.onNewSelect() }>Add new server</span>
+                    </a>
+                </li>
+            </ul>
         );
     }
 }

@@ -1,15 +1,11 @@
 import React, {Component} from 'react';
+import ServerStatModuleContainer from '../../containers/ServerStatModuleContainer';
 
 
 
 export default class MainMonitoringContent extends Component {
-
-    onServerSelect = (s) => {
-        this.props.onServerSelect(s);
-    };
-
     render() {
-        const servers = this.props.servers.map(s => (<span onClick={() => this.onServerSelect(s)} key={s.id}>{s.server_name}</span>));
+        const servers = this.props.servers.map(s => (<ServerStatModuleContainer key={s.id} server={s} />));
         return (
             <div className="server-module log-module">
                 {servers}

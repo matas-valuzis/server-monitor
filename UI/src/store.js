@@ -16,6 +16,8 @@ rm.registerDependcies({
     login: fb.login,
     keys: fb.get('keys'),
     logs: fb.get('logs'),
+    storage: fb.get('storage'),
+    computing: fb.get('computing'),
     changePathAction: push,
     goBackAction: goBack
 });
@@ -33,6 +35,9 @@ const reactRouterMiddleware = routerMiddleware(history);
 
 
 let defaultStore = {
+    menu: {
+        settings_selected: false,
+    },
     loader: {
         message: '',
         loaded_keys: false,
@@ -45,7 +50,14 @@ let defaultStore = {
         error: ''
     },
     monitoring_data: {
-        server_logs: []
+        server_logs: [],
+        server_disk_data: [],
+        server_disk_space_time: 0,
+        server_disk_inode_time: 0,
+        server_computing_data: [],
+        server_computing_cpu_time: 0,
+        server_computing_ram_time: 0,
+        server_computing_task_time: 0,
     },
     servers: {
         key_files: [],
@@ -65,7 +77,8 @@ const rootReducer = combineReducers({
     routing: routerReducer,
     servers: reducer(defaultStore.servers),
     loader: reducer(defaultStore.loader),
-    monitoring_data: reducer(defaultStore.monitoring_data)
+    monitoring_data: reducer(defaultStore.monitoring_data),
+    menu: reducer(defaultStore.menu)
 });
 
 

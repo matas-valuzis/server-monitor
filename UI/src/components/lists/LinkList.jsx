@@ -7,29 +7,29 @@ export default class LinkList extends Component {
      if(item && this.props.onItemClick){
        this.props.onItemClick(item);
      }
-  }
+  };
   render() {
     let items = [];
 
     items = this.props.items.map((e, i) => {
-      let selected = this.props.selectedItem == e.id ? 'selected' : '';
+      let selected = this.props.selectedItem == e.id ? 'active' : '';
       let oddness = i % 2 == 0 ? 'li-even' : 'li-odd';
       return (
-        <li
-          data-id={e.id}
-          key={e.id}
-          className={["list-item", selected, oddness].join(" ")}
-          onClick={this.onLinkClick}>
-          {this.props.labelResolver(e)}
+        <li className="nav-item">
+            <a
+                data-id={e.id}
+                key={e.id}
+                className={["nav-link", selected, oddness].join(" ")}
+                onClick={this.onLinkClick}>
+                {this.props.labelResolver(e)}
+            </a>
         </li>
       );
     });
     return (
-      <div className="link-list">
-        <ul className="list">
+        <ul className={this.props.className}>
           {items}
         </ul>
-      </div>
     );
   }
 }
@@ -38,5 +38,6 @@ LinkList.propTypes = {
   items: React.PropTypes.array.isRequired,            // each item must have id
   selectedItem: React.PropTypes.string,               // id of selected item
   labelResolver: React.PropTypes.func.isRequired,     // returns label from item
-  onItemClick: React.PropTypes.func                   // passes clicked item
-}
+  onItemClick: React.PropTypes.func,                  // passes clicked item
+  className: React.PropTypes.string                   // list class
+};

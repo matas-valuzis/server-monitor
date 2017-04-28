@@ -11,12 +11,16 @@ const mapStateToProps = (state, props) => {
         servers: state.servers.all_servers,
         current_server: props.params.action == 'edit' ? props.params.serverId : null,
         new: props.params.action == 'new',
-        dashboard: !props.params.action
+        dashboard: !props.params.action,
+        settingsSelected: state.menu.settings_selected,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    onSettingsSelect: server => {
+        dispatch(new ReducedAction('SERVER_SETTINGS_TOGGLE', 'menu.settings_selected', s => !s));
+    },
     onServerSelect: server => {
         dispatch(UA('SERVER_EDIT_SELECT', server.id));
     },

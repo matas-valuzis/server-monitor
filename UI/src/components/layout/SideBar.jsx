@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 export default class SideBar extends Component {
   render() {
     return (
-      <div className="sidebar">
-          {this.props.children}
-      </div>
+        <nav className="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
+              {this.props.children}
+        </nav>
     );
   }
 }

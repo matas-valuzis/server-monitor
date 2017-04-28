@@ -4,7 +4,7 @@ import {createUnresolvedAction as UA} from '../UnresolvedAction';
 module.exports = [
     {
         name: 'FETCH_INITIAL_DATA',
-        dependencies: ['keys', 'servers', 'changePathAction', 'logs'],
+        dependencies: ['keys', 'servers', 'changePathAction', 'logs', 'storage', 'computing'],
         resolver: function (action, dispatch){
 
             dispatch(new ReducedAction(
@@ -62,6 +62,36 @@ module.exports = [
                     ));
 
                 })
+                .then(() => {
+                    dispatch(new ReducedAction(
+                        'LOADING_SERVERS_MESSAGE',
+                        'loader.message',
+                        'Loading storage data...'
+                    ))
+                })
+                .then(() => this.storage.find())
+                .then((s) => {
+                    dispatch(new ReducedAction(
+                        'LOADING_SERVERS_STORAGE_DATA',
+                        'monitoring_data.server_disk_data',
+                        s.data.map(d => Object.assign({id: d._id}, d))
+                    ))
+                })
+                .then(() => {
+                    dispatch(new ReducedAction(
+                        'LOADING_SERVERS_MESSAGE',
+                        'loader.message',
+                        'Loading process data...'
+                    ))
+                })
+                .then(() => this.computing.find())
+                .then((s) => {
+                    dispatch(new ReducedAction(
+                        'LOADING_SERVERS_COMPUTING_DATA',
+                        'monitoring_data.server_computing_data',
+                        s.data.map(d => Object.assign({id: d._id}, d))
+                    ))
+                })
                 .then(() => dispatch(UA('REGISTER_EVENTS')))
                 .then(() => dispatch(this.changePathAction('/dashboard')))
                 .catch(e => {
@@ -71,7 +101,7 @@ module.exports = [
     },
     {
         name: 'REGISTER_EVENTS',
-        dependencies: ['servers', 'logs'],
+        dependencies: ['servers', 'logs', 'storage', 'computing'],
         resolver: function (action, dispatch){
             this.logs.on('created', l => {
                 dispatch(UA('ADD_MONITORING_LOG', l));
@@ -85,6 +115,33 @@ module.exports = [
             this.logs.on('patched', l => {
                 dispatch(UA('UPDATE_MONITORING_LOG', l));
             });
+
+            this.storage.on('created', l => {
+                dispatch(UA('ADD_DISK_RECORD', l));
+            });
+            this.storage.on('removed', l => {
+                dispatch(UA('REMOVE_DISK_RECORD', l));
+            });
+            this.storage.on('updated', l => {
+                dispatch(UA('UPDATE_DISK_RECORD', l));
+            });
+            this.storage.on('patched', l => {
+                dispatch(UA('UPDATE_DISK_RECORD', l));
+            });
+
+            this.computing.on('created', l => {
+                dispatch(UA('ADD_COMPUTING_RECORD', l));
+            });
+            this.computing.on('removed', l => {
+                dispatch(UA('REMOVE_COMPUTING_RECORD', l));
+            });
+            this.computing.on('updated', l => {
+                dispatch(UA('UPDATE_COMPUTING_RECORD', l));
+            });
+            this.computing.on('patched', l => {
+                dispatch(UA('UPDATE_COMPUTING_RECORD', l));
+            });
+
 
         }
     },

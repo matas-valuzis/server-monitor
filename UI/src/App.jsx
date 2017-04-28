@@ -16,6 +16,7 @@ import MainPageLoaderContainer from './containers/MainPageLoaderContainer';
 import {store, history} from './store';
 
 require('./css/main.css');
+require('./css/dashboard.css');
 
 export default class App extends Component {
   render() {

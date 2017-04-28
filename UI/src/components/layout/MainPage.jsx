@@ -5,8 +5,10 @@ export default class MainPage extends Component {
   render() {
     const content = this.props.content || this.props.children;
     return (
-      <div className="main-page">
+      <div className="container-fluid">
+        <div className="row">
           {content}
+        </div>
       </div>
     );
   }
