@@ -15,7 +15,6 @@ module.exports = [
 
             this.keys.find()
                 .then(keys => {
-                    console.log('aaa');
                     dispatch(new ReducedAction(
                         'FETCHING_KEYS',
                         'servers.key_files',

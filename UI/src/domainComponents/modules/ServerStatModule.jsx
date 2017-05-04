@@ -8,7 +8,6 @@ export default class ServerStatModule extends Component {
     };
 
     render() {
-        console.log(this.props);
         return (
             <div className="col-sm-6">
                 <div className="card">

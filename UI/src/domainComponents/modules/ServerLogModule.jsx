@@ -6,11 +6,15 @@ export default class ServerLogModule extends Component {
         const logContainers = this.props.logs.map(l => {
             const err = l.error ? <h6> Error: <div className="error">{l.error}</div></h6> : '';
             return (
-                <div key={l.id} className="log">
-                    <h6>{l.log_name}</h6>
-                    <h6>File: {l.log_path}</h6>
-                    {err}
-                    <code>{l.lines.map((line, i) => <p key={i}>{line}</p>)}</code>
+                <div className="card" key={l.id}>
+                    <div className="card-block">
+                        <h6 className="card-title">{l.log_name}</h6>
+                        <h6 className="card-title">File: {l.log_path}</h6>
+                        <div className="log">
+                            {err}
+                            <code className="log-lines">{l.lines.map((line, i) => <p key={i}>{line}</p>)}</code>
+                        </div>
+                    </div>
                 </div>
             )
         });

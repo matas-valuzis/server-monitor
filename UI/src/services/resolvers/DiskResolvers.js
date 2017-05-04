@@ -6,7 +6,7 @@ module.exports = [
         name: 'ADD_DISK_RECORD',
         dependencies: [],
         resolver: function (action, dispatch){
-            const record = action.context;
+            const record = Object.assign({id: action.context._id}, action.context);
             dispatch(new ReducedAction(
                 'ADD_DISK_RECORD',
                 `monitoring_data.server_disk_data`,
@@ -18,7 +18,7 @@ module.exports = [
         name: 'UPDATE_DISK_RECORD',
         dependencies: [],
         resolver: function (action, dispatch){
-            const record = action.context;
+            const record = Object.assign({id: action.context._id}, action.context);
             dispatch(new ReducedAction(
                 'UPDATE_DISK_RECORD',
                 `monitoring_data.server_disk_data[${record.id}]`,

@@ -31,6 +31,9 @@ module.exports = [
                     ))
                 })
                 .catch(e => {
+                    if (e.name == 'BadRequest'){
+                        e.name = 'NewServerCreationFailed';
+                    }
                     dispatch(UA('ERROR', e));
                 });
         }

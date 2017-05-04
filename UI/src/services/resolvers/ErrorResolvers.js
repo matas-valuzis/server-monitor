@@ -11,6 +11,9 @@ module.exports = [
                 case 'NotAuthenticated':
                     dispatch(this.changePathAction('/login'));
                     break;
+                case 'NewServerCreationFailed':
+                    dispatch(new ReducedAction('SERVER_CREATION_ERROR', 'servers.new_server.error', error.message));
+                    break;
                 default:
                     console.log(error);
             }

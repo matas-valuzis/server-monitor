@@ -5,7 +5,8 @@ import {createUnresolvedAction as UA} from '../services/UnresolvedAction';
 const mapStateToProps = (state) => {
     return {
         keys: state.servers.key_files,
-        data_loaded: state.loader.loaded_keys
+        data_loaded: state.loader.loaded_keys,
+        error: state.servers.new_server.error
     };
 };
 const mapDispatchToProps = (dispatch) => {

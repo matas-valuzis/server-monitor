@@ -6,7 +6,7 @@ module.exports = [
         name: 'ADD_COMPUTING_RECORD',
         dependencies: [],
         resolver: function (action, dispatch){
-            const record = action.context;
+            const record = Object.assign({id: action.context._id}, action.context);
             dispatch(new ReducedAction(
                 'ADD_COMPUTING_RECORD',
                 `monitoring_data.server_computing_data`,
@@ -18,7 +18,7 @@ module.exports = [
         name: 'UPDATE_COMPUTING_RECORD',
         dependencies: [],
         resolver: function (action, dispatch){
-            const record = action.context;
+            const record = Object.assign({id: action.context._id}, action.context);
             dispatch(new ReducedAction(
                 'UPDATE_COMPUTING_RECORD',
                 `monitoring_data.server_computing_data[${record.id}]`,

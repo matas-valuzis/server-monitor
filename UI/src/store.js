@@ -63,6 +63,7 @@ let defaultStore = {
         key_files: [],
         all_servers:[],
         new_server: {
+            error: '',
             server_name: '',
             address: '',
             user: '',

@@ -21,21 +21,21 @@ export default class ItemEditList extends Component {
             <li
               data-id={e.id}
               key={e.id}
-              className={["list-item", selected, oddness].join(" ")}
+              className={["list-group-item", selected, oddness].join(" ")}
               onClick={this.onLinkClick}>
-                <div className="list-item-label">{this.props.labelResolver(e)}</div>
-                <div className="list-item-actions">{actionItems}</div>
-                <div className="list-item-status">{status}</div>
+                <div  className="edit-list-item list-item-label">{this.props.labelResolver(e)}</div>
+                <div  className="edit-list-item list-item-actions">{actionItems}</div>
+                <div  className="edit-list-item list-item-status">{status}</div>
             </li>
             );
         });
 
         return (
-            <div className="item-edit-list">
-            <ul className="list">
+
+            <ul className="list-group list-group-flush">
               {items}
             </ul>
-            </div>
+
         );
     }
 }

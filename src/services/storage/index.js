@@ -12,7 +12,7 @@ module.exports = function() {
     id: 'id',
     paginate: {
       default: 5,
-      max: 25
+      max: 1000
     }
   };
 

@@ -2,36 +2,48 @@ import React, {Component} from 'react';
 import OneLineChart from '../../components/charts/OneLineChart.jsx';
 import ChartContainer from '../../components/charts/ChartContainer.jsx';
 import dateformat from 'dateformat';
+import datefilter from '../../services/lib/datefilter';
 
 export default class ServerDiskModule extends Component {
     render() {
-        const spaceData = this.props.disk.map(d => ({
-            x: d.createdAt,
-            y: d.used_space
-        }));
-        const inodeData = this.props.disk.map(d => ({
-            x: d.createdAt,
-            y: d.used_inodes
-        }));
+        let spaceData = this.props.disk_data;
+        let inodeData = this.props.inode_data;
         const timeTabs = [
             {id: 0, name: "Today"},
             {id: 1, name: "This week"},
             {id: 2, name: "This month"},
             {id: 3, name: "This year"},
         ];
+        const timeLabels = {
+            0: d => dateformat(d, 'HH:MM'),
+            1: d => dateformat(d, 'dd'),
+            2: d => dateformat(d, 'mm-dd'),
+            3: d => dateformat(d, 'yyyy-mm-dd')
+        };
+
+        spaceData = spaceData.map(d => ({
+            x: d.createdAt,
+            y: d.used_space
+        }));
+
+        inodeData = inodeData.map(d => ({
+            x: d.createdAt,
+            y: d.used_inodes
+        }));
 
         const spaceChart = (
             <OneLineChart
                 data={spaceData}
                 valueFormater={b => Math.round(b / (1024*1024)) + ' GB'}
-                argumentFormater={d => dateformat(d, 'HH:MM')}
+                argumentFormater={timeLabels[this.props.diskTime]}
             />
         );
 
         const inodeChart = (
             <OneLineChart
                 data={inodeData}
-
+                valueFormater={b => Math.round(b / 1000) + 'K'}
+                argumentFormater={timeLabels[this.props.inodeTime]}
             />
         );
 

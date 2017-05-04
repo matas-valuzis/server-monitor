@@ -4,23 +4,16 @@ import ChartContainer from '../../components/charts/ChartContainer.jsx';
 import dateformat from 'dateformat';
 export default class ServerComputingModule extends Component {
     render() {
-        const dataTableRows = this.props.computing.map((d, i) => {
-            return (<tr key={i}>
-                <td>{d.used_cpu}</td>
-                <td>{d.used_ram}</td>
-                <td>{d.tasks}</td>
-            </tr>);
-        });
-        const cpuData = this.props.computing.map(d => ({
-            x: dateformat(d.createdAt, 'yyyy-mm-dd HH:MM'),
+        const cpuData = this.props.cpu_data.map(d => ({
+            x: d.createdAt,
             y: d.used_cpu
         }));
-        const ramData = this.props.computing.map(d => ({
-            x: dateformat(d.createdAt, 'yyyy-mm-dd HH:MM'),
+        const ramData = this.props.ram_data.map(d => ({
+            x: d.createdAt,
             y: d.used_ram
         }));
-        const tasksData = this.props.computing.map(d => ({
-            x: dateformat(d.createdAt, 'yyyy-mm-dd HH:MM'),
+        const tasksData = this.props.task_data.map(d => ({
+            x: d.createdAt,
             y: d.tasks
         }));
 
@@ -30,26 +23,38 @@ export default class ServerComputingModule extends Component {
             {id: 2, name: "This month"},
             {id: 3, name: "This year"},
         ];
+        const timeLabels = {
+            0: d => dateformat(d, 'HH:MM'),
+            1: d => dateformat(d, 'dddd'),
+            2: d => dateformat(d, 'mm-dd'),
+            3: d => dateformat(d, 'yyyy-mm-dd')
+        };
 
-        const todayCpuChart = (
+        const cpuChart = (
             <OneLineChart
+                dataLabel="CPU"
                 data={cpuData}
                 maxValue={100}
                 minValue={0}
+                argumentFormater={timeLabels[this.props.cpuTime]}
             />
         );
 
-        const todayRamChart = (
+        const ramChart = (
             <OneLineChart
+                dataLabel="RAM"
                 minValue={0}
                 data={ramData}
                 valueFormater={b => Math.round(b / (1024*1024)) + ' MB'}
+                argumentFormater={timeLabels[this.props.ramTime]}
             />
         );
 
-        const todayTaskChart = (
+        const taskChart = (
             <OneLineChart
+                dataLabel="tasks"
                 data={tasksData}
+                argumentFormater={timeLabels[this.props.taskTime]}
             />
         );
 
@@ -62,7 +67,7 @@ export default class ServerComputingModule extends Component {
                             onTabClick={this.props.onCpuTabSelect}
                             header="Cpu usage %"
                             tabs={timeTabs}
-                            current={{id: this.props.cpuTime, content: todayCpuChart}}
+                            current={{id: this.props.cpuTime, content: cpuChart}}
                         />
                     </div>
                 </div>
@@ -72,7 +77,7 @@ export default class ServerComputingModule extends Component {
                             onTabClick={this.props.onRamTabSelect}
                             header="Ram used"
                             tabs={timeTabs}
-                            current={{id: this.props.ramTime, content: todayRamChart}}
+                            current={{id: this.props.ramTime, content: ramChart}}
                         />
                     </div>
                 </div>
@@ -82,7 +87,7 @@ export default class ServerComputingModule extends Component {
                             onTabClick={this.props.onTaskTabSelect}
                             header="Number of tasks running"
                             tabs={timeTabs}
-                            current={{id: this.props.taskTime, content: todayRamChart}}
+                            current={{id: this.props.taskTime, content: taskChart}}
                         />
                     </div>
                 </div>

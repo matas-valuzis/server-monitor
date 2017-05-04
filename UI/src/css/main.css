@@ -17,4 +17,18 @@
 .online{
     color: green;
 }
-
+.edit-list-item{
+    display: inline-block;
+    margin-left: 1%;
+}
+.inline{
+    display: inline-block;
+    margin-left: 1%;
+}
+.log-lines{
+    overflow: auto;
+}
+.log {
+    overflow: auto;
+    height: 40%;
+}
