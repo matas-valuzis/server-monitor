@@ -30,7 +30,6 @@ export default class OneLineChart extends Component {
                     tickFormatter={valueFormater}
                 />
                 <XAxis
-                    interval="0"
                     dataKey="name"
                     scale="utcTime"
                     tickFormatter={argumentFormater}

@@ -39,6 +39,26 @@ module.exports = [
         }
     },
     {
+        name: 'UPDATE_SERVER',
+        dependencies: ['servers'],
+        resolver: function (action, dispatch){
+            this.servers.patch(action.context.id, action.context.data)
+                .then(s => {
+                    dispatch(new ReducedAction(
+                        action.type,
+                        `servers.all_servers[${s._id}]`,
+                        Object.assign({id: s._id}, s)
+                    ))
+                })
+                .catch(e => {
+                    if (e.name == 'BadRequest'){
+                        e.name = 'ServerUpdateFailed';
+                    }
+                    dispatch(UA('ERROR', e));
+                });
+        }
+    },
+    {
         name: 'ADD_SERVER_LOG',
         dependencies: ['servers'],
         resolver: function (action, dispatch){

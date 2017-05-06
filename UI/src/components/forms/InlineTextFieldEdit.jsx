@@ -1,15 +1,37 @@
 import React, {Component} from 'react';
 
 export default class InlineTextFieldEdit extends Component {
-    onLinkClick = (e) => {
-        e.preventDefault();
+    constructor(props){
+        super(props);
+        this.state = {form: false};
+    }
 
+    toggleForm = (e) => {
+        e.preventDefault();
+        this.setState({form: !this.state.form});
     };
+
+    changeValue = (e) => {
+        e.preventDefault();
+        this.props.onValueChange(this.input.value);
+        this.toggleForm(e);
+    };
+
     render() {
+        const input = this.state.form ?
+            (<form className="inline" onSubmit={this.changeValue}>
+                <input
+                    defaultValue={this.props.value}
+                    type="text"
+                    ref={(input) => this.input = input}
+                />
+            </form>)
+            : null;
+
         return (
-            <div className="item-edit-inline">
-                <span>{this.props.label}: </span>
-                <span>{this.props.value}</span>
+            <div className="item-edit-inline" onDoubleClick={this.toggleForm}>
+                <span><b>{this.props.label}: </b></span>
+                <span>{input || this.props.value}</span>
             </div>
         );
     }

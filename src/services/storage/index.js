@@ -11,7 +11,7 @@ module.exports = function() {
     Model: storage,
     id: 'id',
     paginate: {
-      default: 5,
+      default: 1000,
       max: 1000
     }
   };

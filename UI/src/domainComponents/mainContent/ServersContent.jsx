@@ -70,11 +70,11 @@ export default class ServerContent extends Component {
                     </div>
 
                     <ul className="list-group list-group-flush">
-                        <li className="list-group-item"><InlineTextFieldEdit label="Name" value={this.props.server.server_name} /></li>
-                        <li className="list-group-item"><InlineTextFieldEdit label="Adress" value={this.props.server.address} /></li>
-                        <li className="list-group-item"><InlineTextFieldEdit label="User" value={this.props.server.user} /></li>
-                        <li className="list-group-item">Sudo available: {this.props.server.sudo ? 'Yes' : 'No'}</li>
-                        <li className="list-group-item">Identity file: {this.props.server.private_key}</li>
+                        <li className="list-group-item"><InlineTextFieldEdit onValueChange={name => this.props.onNameUpdate(this.props.server.id, name)} label="Name" value={this.props.server.server_name} /></li>
+                        <li className="list-group-item"><InlineTextFieldEdit onValueChange={address => this.props.onAddressUpdate(this.props.server.id, address)} label="Adress" value={this.props.server.address} /></li>
+                        <li className="list-group-item"><b>User:</b> {this.props.server.user}</li>
+                        <li className="list-group-item"><b>Sudo available:</b> {this.props.server.sudo ? 'Yes' : 'No'}</li>
+                        <li className="list-group-item"><b>Identity file:</b> {this.props.server.private_key}</li>
                     </ul>
                     <div className="card-block">
                         <button className="btn btn-primary" onClick={this.onDelete}>Remove server and data</button>

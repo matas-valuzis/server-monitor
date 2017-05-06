@@ -29,6 +29,18 @@ const mapDispatchToProps = (dispatch) => {
                 name: log.name,
                 path: log.path
             }));
+        },
+        onNameUpdate: (id, server_name) => {
+            dispatch(UA('UPDATE_SERVER', {
+                data: { server_name },
+                id
+            }));
+        },
+        onAddressUpdate: (id, address) => {
+            dispatch(UA('UPDATE_SERVER', {
+                data: { address },
+                id
+            }));
         }
     };
 };

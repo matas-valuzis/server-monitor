@@ -11,8 +11,8 @@ module.exports = function() {
     Model: computing,
     Id: 'id',
     paginate: {
-      default: 5,
-      max: 25
+      default: 1000,
+      max: 1000
     }
   };
 
