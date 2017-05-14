@@ -17,8 +17,15 @@ module.exports = function execute(args) {
         email: args._[1],
         password: args._[2]
       })
-      .then(d => console.log('User created!'))
-      .catch(e => console.error(e));
+      .then(
+          d => {
+              console.log('User created!');
+              process.exit(0);
+          })
+      .catch(e => {
+          console.error(e);
+          process.exit(0);
+      });
   }
 
 };

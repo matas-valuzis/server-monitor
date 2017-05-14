@@ -15,7 +15,6 @@ const app = feathers();
 app.configure(configuration(path.join(__dirname, '..')));
 
 app
-  .options('*', cors())
   .configure(hooks())
   .configure(services);
 

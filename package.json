@@ -37,6 +37,7 @@
     "feathers-mongoose": "^3.6.1",
     "feathers-rest": "^1.5.2",
     "feathers-socketio": "^1.4.2",
+    "fs-extra": "^3.0.1",
     "highcharts": "^5.0.10",
     "minimist": "^1.2.0",
     "mongoose": "^4.7.5",

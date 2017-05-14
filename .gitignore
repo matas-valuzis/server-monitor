@@ -37,7 +37,8 @@ data/
 !/src/lib/
 !/src/services/
 !/src/commands/
-/config/production.json
-/config/default.json
+/config/*
 /public/static/
 !/public/static/.gitkeep
+!/config/default.json.dist
+!/config/production.json.dist
