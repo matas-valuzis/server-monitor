@@ -4,11 +4,11 @@ let fs = require('fs');
 const hooks = require('./hooks');
 
 class Service {
-  constructor(options) {
-    this.options = options || {};
-  }
+    constructor(options) {
+        this.options = options || {};
+    }
 
-  find(params) {
+    find(params) {
     return new Promise(function(resolve, revoke){
         fs.readdir('keys', (err, keys) => {
           if(err){
@@ -17,7 +17,39 @@ class Service {
           resolve(keys.filter(k => k != '.gitkeep'));
         });
     });
-  }
+    }
+
+    create(data, params) {
+        return new Promise(function(resolve, reject){
+            const newFilePath = 'keys/' + data.file_name;
+            if (fs.existsSync(newFilePath)) {
+                throw new Error('Key file already exists!');
+            }
+            let content = new Buffer(data.data, 'base64').toString();
+            fs.writeFile(newFilePath, content, err => {
+                if (err){
+                    reject(err);
+                }
+                else{
+                    resolve(data.file_name);
+                }
+            })
+        });
+    }
+
+    remove(id, params) {
+        return new Promise(function(resolve, revoke){
+            const path = 'keys/'+id;
+            fs.unlink(path,  e => {
+                if (e){
+                    revoke(e);
+                }
+                else{
+                    resolve(id);
+                }
+            });
+        });
+    }
 
 }
 

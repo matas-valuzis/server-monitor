@@ -143,23 +143,7 @@ module.exports = [
                 });
         }
     },
-    {
-        name: 'FETCH_KEYS',
-        dependencies: ['keys'],
-        resolver: function (action, dispatch){
-            this.keys.find()
-                .then(d => {
-                    dispatch(new ReducedAction(
-                        action.type,
-                        'servers.key_files',
-                        d
-                    ));
-                })
-                .catch(e => {
-                    dispatch(UA('ERROR', e));
-                });
-        }
-    },
+
     {
         name: 'SERVER_EDIT_SELECT',
         dependencies: ['changePathAction'],

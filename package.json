@@ -24,6 +24,7 @@
     "mocha": "mocha test/ --compilers js:babel-core/register --recursive"
   },
   "dependencies": {
+    "atob": "^2.0.3",
     "body-parser": "^1.15.2",
     "compression": "^1.6.2",
     "cors": "^2.8.1",
@@ -40,6 +41,7 @@
     "minimist": "^1.2.0",
     "mongoose": "^4.7.5",
     "passport": "^0.3.2",
+    "react-dropzone": "^3.13.1",
     "serve-favicon": "^2.3.2",
     "ssh2": "^0.5.4",
     "winston": "^2.3.0"
@@ -59,6 +61,7 @@
     "eslint-plugin-react": "^6.8.0",
     "jshint": "^2.9.4",
     "json-loader": "^0.5.4",
+    "md5": "^2.2.1",
     "mocha": "^3.2.0",
     "moment": "^2.18.1",
     "node-ssh": "^4.0.1",

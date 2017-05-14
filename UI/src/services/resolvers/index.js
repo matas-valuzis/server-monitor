@@ -5,6 +5,7 @@ import LoaderResolvers from './LoaderResolvers';
 import LogResolvers from './LogResolvers';
 import DiskResolvers from './DiskResolvers';
 import ComputimgResolvers from './ComputingResolvers';
+import KeysResolvers from './KeysResolvers';
 
 module.exports = [
     ...AuthResolvers,
@@ -14,4 +15,5 @@ module.exports = [
     ...LogResolvers,
     ...DiskResolvers,
     ...ComputimgResolvers,
+    ...KeysResolvers,
 ];

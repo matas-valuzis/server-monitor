@@ -7,6 +7,7 @@ export default class ServerMenu extends Component {
     }
     render() {
         let add_selected = this.props.new ? ' active' : '';
+        let keys_selected = this.props.keys ? ' active' : '';
         let dashboard_selected = this.props.dashboard ? ' active' : '';
         let serverSettingExpanded = this.props.settingsSelected ? 'collapse ' : '';
 
@@ -17,6 +18,11 @@ export default class ServerMenu extends Component {
                 <h1>Sermon</h1>
                 <li className="nav-item">
                     <a className={"nav-link " + [dashboard_selected].join(" ")} onClick={this.props.onDashboardSelect} >Dashboard</a>
+                </li>
+                <li className="nav-item">
+                    <a className={"nav-link " + [keys_selected].join(" ")}>
+                        <span onClick={() => this.props.onKeysSelect() }>Keys</span>
+                    </a>
                 </li>
                 <li className="nav-item">
                     <a onClick={(e) => {e.preventDefault(); this.props.onSettingsSelect();}} className={"nav-link"}>

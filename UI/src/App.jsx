@@ -12,6 +12,7 @@ import ServerContentContainer from './containers/ServerContentContainer';
 import ServerMonitoringContentContainer from './containers/ServerMonitoringContentContainer';
 import MainMonitoringContentContainer from './containers/MainMonitoringContentContainer';
 import MainPageLoaderContainer from './containers/MainPageLoaderContainer';
+import KeysContentContainer from './containers/KeysContentContainer';
 
 import {store, history} from './store';
 
@@ -34,6 +35,7 @@ export default class App extends Component {
                 <ServerMenuContainer params={m.match.params || {}} />
             </SideBar>
             <MainContent>
+                <Route path="/dashboard/keys" component={KeysContentContainer} />
                 <Route path="/dashboard/new" component={CreateServerFormContainer} />
                 <Route path="/dashboard/edit/:serverId" render={(m) => {
                   return (<ServerContentContainer serverId={m.match.params.serverId} />);

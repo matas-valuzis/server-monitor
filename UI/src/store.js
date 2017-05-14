@@ -60,6 +60,10 @@ let defaultStore = {
         server_computing_task_time: 0,
     },
     servers: {
+        new_key_file: {
+            uploaded: false,
+            error: ''
+        },
         key_files: [],
         all_servers:[],
         new_server: {
