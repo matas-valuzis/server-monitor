@@ -16,7 +16,7 @@ import KeysContentContainer from './containers/KeysContentContainer';
 
 import {store, history} from './store';
 
-require('./css/main.css');
+require('./css/main.scss');
 require('./css/dashboard.css');
 
 export default class App extends Component {

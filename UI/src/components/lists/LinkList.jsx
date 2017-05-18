@@ -15,10 +15,10 @@ export default class LinkList extends Component {
       let selected = this.props.selectedItem == e.id ? 'active' : '';
       let oddness = i % 2 == 0 ? 'li-even' : 'li-odd';
       return (
-        <li key={e.id} className="nav-item">
+        <li key={e.id} className="nav-item customItem">
             <a
                 data-id={e.id}
-                className={["nav-link", selected, oddness].join(" ")}
+                className={["nav-link customLink ", selected, oddness].join(" ")}
                 onClick={this.onLinkClick}>
                 {this.props.labelResolver(e)}
             </a>

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import LinkList from '../../components/lists/LinkList.jsx';
+import FontAwesome from 'react-fontawesome';
 
 export default class ServerMenu extends Component {
     componentDidMount(){
@@ -15,19 +16,16 @@ export default class ServerMenu extends Component {
 
         return (
             <ul className="nav nav-pills nav-justified flex-column">
-                <h1>Sermon</h1>
-                <li className="nav-item">
-                    <a className={"nav-link " + [dashboard_selected].join(" ")} onClick={this.props.onDashboardSelect} >Dashboard</a>
+                <h1 className="brand">Sermon</h1>
+
+                <li className="nav-item customItem">
+                    <a className={"nav-link customLink " + [dashboard_selected].join(" ")} onClick={this.props.onDashboardSelect} ><FontAwesome name='tachometer' /> Dashboard</a>
                 </li>
-                <li className="nav-item">
-                    <a className={"nav-link " + [keys_selected].join(" ")}>
-                        <span onClick={() => this.props.onKeysSelect() }>Keys</span>
-                    </a>
+                <li className="nav-item customItem">
+                    <a className={"nav-link customLink " + [keys_selected].join(" ")} onClick={() => this.props.onKeysSelect() }><FontAwesome name='key' /> Keys</a>
                 </li>
-                <li className="nav-item">
-                    <a onClick={(e) => {e.preventDefault(); this.props.onSettingsSelect();}} className={"nav-link"}>
-                        Server settings:
-                    </a>
+                <li className="nav-item customItem">
+                    <a onClick={(e) => {e.preventDefault(); this.props.onSettingsSelect();}} className={"nav-link customLink"}><FontAwesome name='wrench' /> Server settings:</a>
                     <LinkList
                         className={"nav-pills nav-justified flex-column " + serverSettingExpanded}
                         items={this.props.servers}
@@ -36,10 +34,8 @@ export default class ServerMenu extends Component {
                         onItemClick={this.props.onServerSelect}
                     />
                 </li>
-                <li className="nav-item">
-                    <a className={"nav-link " + [add_selected].join(" ")}>
-                        <span onClick={() => this.props.onNewSelect() }>Add new server</span>
-                    </a>
+                <li className="nav-item customItem">
+                    <a className={"nav-link customLink " + [add_selected].join(" ")} onClick={() => this.props.onNewSelect() }><FontAwesome name='plus' /> Add new server</a>
                 </li>
             </ul>
         );

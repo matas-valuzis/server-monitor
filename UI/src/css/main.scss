@@ -1,0 +1,268 @@
+@import url('https://fonts.googleapis.com/css?family=Khula');
+@import "font-awesome-4.7.0/scss/font-awesome";
+
+
+$mainColor: #0049b0;
+
+/* Sidebar design */
+/*!
+ * Start Bootstrap - Simple Sidebar (http://startbootstrap.com/)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
+
+body {
+    overflow-x: hidden;
+    font-family: 'Khula', sans-serif;
+}
+
+/* Toggle Styles */
+
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+    padding-left: 250px;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 0;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: #f4f5f7;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    border-right: solid 2px $mainColor;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+}
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav li {
+    text-indent: 20px;
+    line-height: 40px;
+}
+
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: #999999;
+}
+
+.sidebar-nav li a:hover {
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255,255,255,0.2);
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+    height: 65px;
+    font-size: 18px;
+    line-height: 60px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+    color: #999999;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+    color: #fff;
+    background: none;
+}
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 0;
+    }
+
+    #wrapper.toggled {
+        padding-left: 250px;
+    }
+
+    #sidebar-wrapper {
+        width: 0;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 250px;
+    }
+
+    #page-content-wrapper {
+        padding: 20px;
+        position: relative;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+}
+
+/* general styling */
+
+
+
+.selected{
+    background-color: red;
+}
+.login-error{
+    color: red;
+}
+
+.error{
+    color: red;
+}
+
+.offline{
+    color: red;
+}
+
+.online{
+    color: green;
+}
+.edit-list-item{
+    display: inline-block;
+    margin-left: 1%;
+}
+.inline{
+    display: inline-block;
+    margin-left: 1%;
+}
+.log-lines{
+    overflow: auto;
+}
+.log {
+    overflow: auto;
+    height: 40%;
+}
+
+.mainContent {
+    position:relative;
+}
+
+.toggleIcon {
+    position: fixed;
+    z-index: 1001;
+    top:0;
+    left: 250px;
+    margin-right: 0px;
+    padding: 10px;
+    background-color: $mainColor;
+}
+
+#wrapper.toggled .toggleIcon {
+    left: 250px;
+}
+
+#wrapper .toggleIcon {
+    left: 0px;
+    transition:
+        left .5s ease;
+}
+
+.toggleIcon:hover {
+    color: $mainColor !important;
+    background-color: $mainColor;
+}
+
+.iconMenu {
+    color: white;
+}
+
+.iconMenu:hover {
+    color: white;
+    -webkit-animation:spin 4s linear infinite;
+    -moz-animation:spin 4s linear infinite;
+    animation:spin 4s linear infinite;
+}
+
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+.brand {
+    margin-top:15px;
+    font-weight: 600;
+    text-align: center;
+    color: $mainColor;
+}
+
+.nav-item.customItem {
+    display:block;
+    width: 100%;
+    border-radius: 0px;
+}
+
+.nav-pills .nav-link.customLink {
+    padding-left:0px;
+}
+
+.nav-pills .nav-item+.nav-item {
+    margin-left: 0px;
+}
+
+
+.nav-link.customLink.active {
+    background-color:$mainColor;
+}
+
+.nav-item.customItem:hover,
+.nav-link.customLink:hover {
+    cursor: pointer;
+    background-color: white;
+    color: $mainColor;
+}
+
+.log-module {
+    padding: 50px;
+}
+
+.card-footer {
+    text-align: center;
+}
+
+.mainColor {
+    color: $mainColor;
+}
+
+

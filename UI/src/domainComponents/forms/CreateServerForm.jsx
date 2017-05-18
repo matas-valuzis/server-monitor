@@ -21,7 +21,7 @@ export default class CreateServerForm extends Component {
     let keyOptions = this.props.keys.map(k => (<option key={k} value={k}>{k}</option>));
     return (
 
-      <div className="container">
+      <div className="log-module">
           <h1>Add new server</h1>
         <div className="row">
         <div className="card">

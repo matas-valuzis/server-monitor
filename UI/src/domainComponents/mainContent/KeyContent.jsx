@@ -36,7 +36,7 @@ export default class KeyContent extends Component {
             }}
         />;
         return (
-            <div className="container">
+            <div className="log-module">
                 <h1>Keys</h1>
                 <div className="card">
                     <div className="card-block">

@@ -57,7 +57,7 @@ export default class ServerContent extends Component {
             }}
         />;
         return (
-            <div className="container">
+            <div className="log-module">
                 <h1>{this.props.server.server_name} settings</h1>
                 <div className="card">
                     <div className="card-block">
