@@ -43,3 +43,4 @@ data/
 !/config/default.json.dist
 !/config/production.json.dist
 !/UI/src/services/lib/
+!/test/services/logs/
