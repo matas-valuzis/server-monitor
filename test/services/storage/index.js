@@ -6,7 +6,7 @@ const app = require('../../../src/app').services;
 describe('storage service', function() {
     const storage = {
         server: 'test',
-        used_inodes: 10,
+        used_inodes: 1000,
         used_space: 1000,
     };
 

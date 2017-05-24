@@ -67,3 +67,15 @@ h1 {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
 }
+
+.chart-container{
+    width: 100%;
+}
+
+.chart-container-tab:hover{
+    cursor: hand;
+}
+
+.dropzone:hover{
+    cursor: hand;
+}

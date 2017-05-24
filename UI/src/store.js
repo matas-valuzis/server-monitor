@@ -36,6 +36,7 @@ const reactRouterMiddleware = routerMiddleware(history);
 
 let defaultStore = {
     menu: {
+        display: true,
         settings_selected: false,
     },
     loader: {

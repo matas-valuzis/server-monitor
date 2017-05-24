@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import SideBar from './SideBar.jsx';
-import MainContent from './MainContent.jsx';
-import $ from 'jquery';
 import FontAwesome from 'react-fontawesome';
 
 export default class MainPage extends Component {
@@ -10,24 +7,21 @@ export default class MainPage extends Component {
       this.toggleMenu = this.toggleMenu.bind(this);
   }
 
-  toggleMenu(){
-      if($("#wrapper").hasClass("toggled")){
-          $("#wrapper").removeClass("toggled");
-      } else {
-          $("#wrapper").addClass("toggled");
-      }
+  toggleMenu(e){
+      e.preventDefault();
+      this.props.toggleMenu();
   };
+
 
   render() {
     const content = this.props.content || this.props.children;
+    const toggleMenu = !this.props.menu ? '' : 'toggled';
 
-
-
-      return (
-      <div id="wrapper" className="toggled">
+    return (
+        <div id="wrapper" className={toggleMenu}>
         <a href="#menu-toggle" onClick={this.toggleMenu} className="toggleIcon" id="menu-toggle"><FontAwesome className="iconMenu" name='bars' /></a>
           {content}
-      </div>
+        </div>
     );
   }
 }

@@ -20,9 +20,9 @@ export default class KeyContent extends Component {
     };
 
     render() {
-        const dropText = <div>
+        const dropText = <div className="dropzone">
             <center>
-                <h3>Drag and drop key file</h3>
+                <h3>Drag and drop key file or click here</h3>
                 <h5 className="error">{this.props.upload_error}</h5>
             </center>
         </div>;

@@ -10,7 +10,7 @@ export default class ChartContainer extends Component {
             return (
                 <li className="nav-item" key={i}>
                     <a
-                        className={"nav-link " + active}
+                        className={"nav-link chart-container-tab " + active}
                         onClick={(e) => {
                             e.preventDefault();
                             this.props.onTabClick(t);
@@ -20,7 +20,7 @@ export default class ChartContainer extends Component {
             )
         });
         return (
-            <div className="container">
+            <div className="container chart-container">
                 <h5>{this.props.header}</h5>
                 <ul  className="nav nav-tabs">
                     {tabs}

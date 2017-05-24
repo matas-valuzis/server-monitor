@@ -9,6 +9,7 @@ export default class OneLineChart extends Component {
         point[dataLabel] = d.y;
         return point;
     });
+    let Yscale = this.props.Yscale || 'auto';
     let minValue = this.props.minValue || 0;
     let maxValue = this.props.maxValue || 'auto';
     let valueFormater = this.props.valueFormater || (t => t);
@@ -26,6 +27,7 @@ export default class OneLineChart extends Component {
                 />
                 <CartesianGrid stroke="#ccc" />
                 <YAxis
+                    scale={Yscale}
                     domain={[minValue, maxValue]}
                     tickFormatter={valueFormater}
                 />

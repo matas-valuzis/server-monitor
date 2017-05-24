@@ -32,10 +32,11 @@ export default class ServerComputingModule extends Component {
 
         const cpuChart = (
             <OneLineChart
+                Yscale="sqrt"
                 dataLabel="CPU"
                 data={cpuData}
-                maxValue={100}
                 minValue={0}
+                maxValue={100}
                 argumentFormater={timeLabels[this.props.cpuTime]}
             />
         );
@@ -45,7 +46,7 @@ export default class ServerComputingModule extends Component {
                 dataLabel="RAM"
                 minValue={0}
                 data={ramData}
-                valueFormater={b => Math.round(b / (1024*1024)) + ' MB'}
+                valueFormater={b => Math.round(b / (1024)) + ' MB'}
                 argumentFormater={timeLabels[this.props.ramTime]}
             />
         );

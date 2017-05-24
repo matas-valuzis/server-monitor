@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Khula');
-@import "font-awesome-4.7.0/scss/font-awesome";
+$fa-font-path: "~font-awesome/fonts";
+@import "~font-awesome/scss/font-awesome";
 
 
 $mainColor: #0049b0;

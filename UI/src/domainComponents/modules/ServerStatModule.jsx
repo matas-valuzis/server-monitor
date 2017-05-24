@@ -16,7 +16,7 @@ export default class ServerStatModule extends Component {
                         <h2 className="card-title ">{this.props.server.server_name}</h2>
                     </div>
                     <ul className="list-group list-group-flush">
-                        <li className="list-group-item"><FontAwesome className="mainColor" name='th-large' /> RAM used: <h3>{Math.round(this.props.computing.used_ram / (10.24*1024))/100} MB</h3></li>
+                        <li className="list-group-item"><FontAwesome className="mainColor" name='th-large' /> RAM used: <h3>{Math.round(this.props.computing.used_ram / (10.24))/100} MB</h3></li>
                         <li className="list-group-item"><FontAwesome className="mainColor" name='bolt' /> CPU utilization: <h3>{this.props.computing.used_cpu}%</h3></li>
                         <li className="list-group-item"><FontAwesome className="mainColor" name='th-list' /> Tasks running: <h3>{this.props.computing.tasks}</h3></li>
                     </ul>
