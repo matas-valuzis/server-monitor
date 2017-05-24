@@ -16,7 +16,7 @@ export default class ServerDiskModule extends Component {
         ];
         const timeLabels = {
             0: d => dateformat(d, 'HH:MM'),
-            1: d => dateformat(d, 'dd'),
+            1: d => dateformat(d, 'dddd'),
             2: d => dateformat(d, 'mm-dd'),
             3: d => dateformat(d, 'yyyy-mm-dd')
         };

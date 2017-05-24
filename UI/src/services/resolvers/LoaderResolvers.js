@@ -68,12 +68,24 @@ module.exports = [
                         'Loading storage data...'
                     ))
                 })
-                .then(() => this.storage.find())
+                .then(() => {
+                    const now = new Date();
+                    const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+                    return this.storage.find({query: {createdAt: {'$gte': startOfToday}}});
+                })
                 .then((s) => {
                     dispatch(new ReducedAction(
                         'LOADING_SERVERS_STORAGE_DATA',
                         'monitoring_data.server_disk_data',
                         s.data.map(d => Object.assign({id: d._id}, d))
+                    ))
+                })
+                .then(() => this.storage.find({query: {history: true}}))
+                .then((s) => {
+                    dispatch(new ReducedAction(
+                        'LOADING_SERVERS_STORAGE_HISTORY_DATA',
+                        'monitoring_data.server_disk_history_data',
+                        s.map(d => Object.assign({id: d._id}, d))
                     ))
                 })
                 .then(() => {
@@ -83,12 +95,24 @@ module.exports = [
                         'Loading process data...'
                     ))
                 })
-                .then(() => this.computing.find())
+                .then(() => {
+                    const now = new Date();
+                    const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+                    return this.computing.find({query: {createdAt: {'$gte': startOfToday}}});
+                })
                 .then((s) => {
                     dispatch(new ReducedAction(
                         'LOADING_SERVERS_COMPUTING_DATA',
                         'monitoring_data.server_computing_data',
                         s.data.map(d => Object.assign({id: d._id}, d))
+                    ))
+                })
+                .then(() => this.computing.find({query: {history: true}}))
+                .then((s) => {
+                    dispatch(new ReducedAction(
+                        'LOADING_SERVERS_COMPUTING_HISTORY_DATA',
+                        'monitoring_data.server_computing_history_data',
+                        s.map(d => Object.assign({id: d._id}, d))
                     ))
                 })
                 .then(() => dispatch(UA('REGISTER_EVENTS')))

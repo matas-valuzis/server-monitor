@@ -53,9 +53,11 @@ let defaultStore = {
     monitoring_data: {
         server_logs: [],
         server_disk_data: [],
+        server_disk_history_data: [],
         server_disk_space_time: 0,
         server_disk_inode_time: 0,
         server_computing_data: [],
+        server_computing_history_data: [],
         server_computing_cpu_time: 0,
         server_computing_ram_time: 0,
         server_computing_task_time: 0,

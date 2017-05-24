@@ -1,8 +1,9 @@
 'use strict';
 
-const service = require('feathers-mongoose');
+const Service  = require('feathers-mongoose').Service;
 const storage = require('./storage-model');
 const hooks = require('./hooks');
+const avg = require('./avg-per-day');
 
 module.exports = function() {
   const app = this;
@@ -16,8 +17,17 @@ module.exports = function() {
     }
   };
 
-  // Initialize our service with any options it requires
-  app.use('/storage', service(options));
+  class Storage extends Service{
+      find(params){
+        if (params.query.history){
+            return avg(this.Model);
+        }
+        return super.find(params);
+      }
+  }
+
+    // Initialize our service with any options it requires
+  app.use('/storage', new Storage(options));
 
   // Get our initialize service to that we can bind hooks
   const storageService = app.service('/storage');
