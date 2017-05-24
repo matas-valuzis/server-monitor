@@ -14,8 +14,8 @@ module.exports = function execute(args) {
   if(args._[0] == 'create:user'){
       const app = require('../app-cli');
       app.service('users').create({
-        email: args._[1],
-        password: args._[2]
+        email: args._[1] + "",
+        password: args._[2] + ""
       })
       .then(
           d => {
